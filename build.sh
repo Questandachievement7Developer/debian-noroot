@@ -1,5 +1,21 @@
 #!/bin/sh
+
 sudo apt-get install autoconf automake debhelper build-essential libtool qemu-user-static debootstrap pxz schroot apt-cacher-ng
+
+git submodule update --init --recursive
+cd img
+sudo ./img-debian-buster-arm64-v8a.sh
+sudo ./img-debian-buster-x86_64.sh
+cd ..
+./build.sh
+sudo mount -o bind . img/dist-debian-buster-arm64-v8a/img/mnt
+sudo chroot img/dist-debian-buster-arm64-v8a/img
+apt-get update
+apt-get install gcc
+cd mnt
+./build.sh
+
+
 fail() { echo "Compilation failed!" ; exit 1; }
 
 #ARCH_LIST="arm64-v8a x86_64"
@@ -88,3 +104,7 @@ for ARCH in $ARCH_LIST; do
 	} || fail
 
 done
+
+
+cd img
+sh prepare-img-overlay.sh
