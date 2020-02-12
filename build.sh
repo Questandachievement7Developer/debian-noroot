@@ -1,5 +1,5 @@
 #!/bin/sh
-
+sudo apt-get install autoconf automake debhelper build-essential libtool qemu-user-static debootstrap pxz schroot apt-cacher-ng
 fail() { echo "Compilation failed!" ; exit 1; }
 
 #ARCH_LIST="arm64-v8a x86_64"
