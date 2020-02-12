@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt-get install autoconf automake debhelper build-essential libtool qemu-user-static debootstrap pxz schroot apt-cacher-ng
+sudo apt-get install autoconf automake debhelper build-essential libtool qemu-user-static debootstrap schroot apt-cacher-ng
 
 git submodule update --init --recursive
 cd img
